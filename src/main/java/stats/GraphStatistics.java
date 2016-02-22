@@ -12,9 +12,9 @@ public class GraphStatistics {
 
     public static class Degree {
         public final String label;
-        public long min = Integer.MAX_VALUE, max, count;
+        public long count, max, min = Long.MAX_VALUE;
 
-        public Degree(String label) { this.label = label; }
+        Degree(String label) { this.label = label; }
 
         void add(int degree) {
             if (degree < min) min = degree;
@@ -26,12 +26,12 @@ public class GraphStatistics {
     @Procedure
     // not needed here @PerformsWrites
     public Stream<Degree> degree(@Name("label") String label) {
-        Degree d = new Degree(label);
+        Degree degree = new Degree(label);
         try (ResourceIterator<Node> it = db.findNodes(Label.label(label))) {
             while (it.hasNext()) {
-               d.add(it.next().getDegree());
+               degree.add(it.next().getDegree());
             }
         }
-        return Stream.of(d);
+        return Stream.of(degree);
     }
 }
