@@ -3,12 +3,12 @@ package stats;
 import java.util.*;
 import java.util.stream.*;
 import org.neo4j.graphdb.*;
+import org.neo4j.kernel.internal.GraphDatabaseAPI;
 import org.neo4j.procedure.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.neo4j.test.TestGraphDatabaseFactory;
 
-import org.neo4j.kernel.GraphDatabaseAPI;
 import org.neo4j.kernel.impl.proc.Procedures;
 
 public class GraphStatisticsTest {
